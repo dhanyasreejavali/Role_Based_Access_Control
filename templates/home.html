@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4">
+  <h2>Welcome to the RBAC System</h2>
+  <p>This is a Role-Based Access Control system built with Django.</p>
+
+  {% if user.is_authenticated %}
+    <p>You are logged in as <strong>{{ user.username }}</strong> ({{ user.role|title }}).</p>
+    
+    <a href="{% url 'dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+    {% if user.role == 'admin' %}
+      <a href="/admin/" class="btn btn-dark mt-2">Go to Admin Panel</a>
+    {% endif %}
+
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+  {% endif %}
+</div>
+{% endblock %}
+{% if user.role == 'admin' %}
+  <a href="{% url 'admin_data' %}" class="btn btn-outline-dark">Admin</a>
+{% endif %}

@@ -1,0 +1,44 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <div class="card shadow-sm p-4">
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <div class="mt-3">
+      <h5>Your Profile Info</h5>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+        <li class="list-group-item"><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+        <li class="list-group-item"><strong>Role:</strong> {{ user.role|title }}</li>
+        <li class="list-group-item"><strong>Is Staff:</strong> {{ user.is_staff }}</li>
+        <li class="list-group-item"><strong>Is Active:</strong> {{ user.is_active }}</li>
+      </ul>
+
+      <div class="mt-3">
+        <a href="{% url 'edit_profile' %}" class="btn btn-outline-info btn-sm">Edit Profile</a>
+      </div>
+    </div>
+
+    <div class="mt-4">
+{% if user.role == 'admin' %}
+  <h5>Admin Quick Links</h5>
+  <a href="{% url 'admin_only' %}" class="btn btn-outline-primary btn-sm">Admin Section</a>
+  <a href="{% url 'role_data' %}" class="btn btn-outline-info btn-sm">View Team Info</a>
+{% elif user.role == 'manager' %}
+  <h5>Manager Quick Links</h5>
+  <a href="{% url 'manager_only' %}" class="btn btn-outline-secondary btn-sm">Manager Section</a>
+  <a href="{% url 'role_data' %}" class="btn btn-outline-info btn-sm">View Team Info</a>
+{% elif user.role == 'user' %}
+  <h5>User Quick Links</h5>
+  <a href="{% url 'user_only' %}" class="btn btn-outline-success btn-sm">User Section</a>
+{% endif %}
+    </div>
+
+    <div class="mt-3">
+      <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Manager Dashboard{% endblock %}
+
+{% block content %}
+  <h1>Manager Dashboard</h1>
+  <p>Welcome Manager, {{ user.username }}!</p>
+  <p>You can manage your team’s data here.</p>
+
+  <ul>
+      <li><a href="{% url 'dashboard' %}">Go to Dashboard</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+  </ul>
+{% endblock %}
