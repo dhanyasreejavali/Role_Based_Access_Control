@@ -3,13 +3,6 @@ Custom user model with role-based permissions (`admin`, `manager`, `user`)
 - Managers can view and manage their own team data
 - Users can view their profile and dashboard only
 - Secure login and logout
-admin:
-username: dhanya
-Admin:
 Username: Dhanya_admin
 Password: Dhanya@123
-Users:
-Username: Padmavathi
-Password: Padma@123
-Username: Mohan
-Password: mohan@197
+Role: admin
